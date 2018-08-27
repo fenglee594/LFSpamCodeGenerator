@@ -18,15 +18,18 @@
 
 @end
 
-int fileCount = 100; //生成的文件个数
-int methodsCount = 30;  //  每个文件方法的个数
+int fileCount = 2; //生成的文件个数
 
-NSString *outPath = @"/Users/lifeng/Desktop/spam/";
+NSString *outPath = @"/Users/lifeng/Desktop/spam/code/";
 
 NSString *publicHeader = @"PublicHeader";   //需要引入的头文件
 NSString *publicCallClassName = @"HelloWorld";  //外面引用的类的名称
 
 NSString *classMethodPrefix = @"";
+NSString *beforeClass = nil;
+NSString *beforeClassPrefix = nil;
+NSString *beforeClassSuffix = nil;
+
 
 
 @implementation ViewController
@@ -63,6 +66,8 @@ NSString *classMethodPrefix = @"";
         [self generatorSpamCodeFileWithClassName:classname];
         fileCount --;
     }
+    
+    [self generatorSpamCodeFileWithClassName:publicCallClassName];
     [SHHUD HUDHide];
 }
 
@@ -144,6 +149,8 @@ NSString *classMethodPrefix = @"";
 }
 
 
+//NSString *beforeClass = nil;    //上一个类名
+NSString *beforeClassMethodString = nil;  //保存调用上一个类的方法String
 
 
 /**
@@ -151,6 +158,8 @@ NSString *classMethodPrefix = @"";
  */
 - (void) generatorSpamCodeFileWithClassName:(NSString *)className
 {
+//    NSString *beforeMethods = nil;
+    
     [self createDirectory:outPath];
     NSString *importString = @"#import <Foundation/Foundation.h> \n";
 
@@ -170,6 +179,53 @@ NSString *classMethodPrefix = @"";
     if ([className isEqualToString:publicCallClassName]) {
         methodsSet = [NSSet setWithObjects:@"mainMethodsCalledWith", nil];
     }
+    
+    NSString *beforeMethodPrefix = nil;
+    NSString *beforeMethodSuffix = nil;
+    NSUInteger index = 0; //正在写入第 index 个方法
+    
+    
+    for (NSString *methodName in methodsSet) {
+        //给.h文件添加注释 并拼接方法
+        NSString *param1 = [self getRandomStringFromArr:self.wordsFromTxt];
+        NSString *param2 = [self getRandomStringFromArr:self.wordsFromList];
+        NSString *noteStr = getRandomNoteString();
+        NSString *predicate = [self getRandomPredicate];
+        [hFileMethodsString appendFormat:@"// %@ \n %@ (void)%@%@:(NSString *)%@ %@%@:(NSString *)%@;\n\n",noteStr, @"+", methodName, param1, param1, predicate, param2, param2];
+
+        //给.m文件中添加注释并拼接方法
+        [mFileMethodsString appendFormat:@"#pragma mark - %@ \n %@ (void)%@%@:(NSString *)%@ %@%@:(NSString *)%@\n {\n", noteStr, @"+", methodName, param1, param1, predicate, param2, param2];
+
+        //方法内的代码
+        [mFileMethodsString appendFormat:@"    NSLog(@\"function:%%s line:\", %@);\n\n", @"__FUNCTION__"];
+        [mFileMethodsString appendFormat:@"    [%@ substringFromIndex:1];\n\n", param2];
+        [mFileMethodsString appendFormat:@"    [%@ isEqualToString:@\"%@\"];\n\n", param2,param1];
+        [mFileMethodsString appendFormat:@"    NSLog(@\"%%@===%%@\", %@,%@);\n\n", param2,[NSString stringWithFormat:@"@\"%@\"",param1]];
+        
+        if (beforeClass && index == 0) {
+            [mFileMethodsString appendFormat:@"     //调用%@  \n   [%@ %@:%@ %@:%@];", beforeClass, beforeClass, beforeClassPrefix, param1, beforeClassSuffix, param2];
+            beforeClass = nil;
+            beforeClassSuffix = nil;
+            beforeClassPrefix = nil;
+        }
+        if (beforeMethodPrefix) {
+            [mFileMethodsString appendFormat:@"     //调用%@  \n   [self %@:%@ %@:%@];", beforeMethodPrefix, beforeMethodPrefix, param1, beforeMethodSuffix, param2];
+        }
+        
+        [mFileMethodsString appendString:@"\n}\n\n"];
+        beforeMethodPrefix = [NSString stringWithFormat:@"%@%@",methodName,param1];
+        beforeMethodSuffix = [NSString stringWithFormat:@"%@%@",predicate,param2];
+        
+        if (index == methodsSet.count - 1) {
+            beforeClass = className;
+            beforeClassPrefix = beforeMethodPrefix;
+            beforeClassSuffix = beforeMethodSuffix;
+        }
+        index ++;
+
+    }
+    
+    
    
     
     NSString *fileName = [NSString stringWithFormat:@"%@.h",className];
@@ -185,15 +241,11 @@ NSString *classMethodPrefix = @"";
 ///MARK: 获取方法集合
 - (NSSet *) getMethodsSet
 {
+    int methodsCount = 10;  //  每个文件方法的个数
     NSMutableSet *set = [[NSMutableSet alloc] init];
     while (methodsCount > 0) {
         NSString *methodPrefix = [[self getRandomStringFromArr:self.wordsFromList] lowercaseString];
         NSString *brige1 = [self getRandomPredicate];
-//        NSString *methodParm1 = [self getRandomStringFromArr:self.wordsFromTxt];
-//        NSString *brige2 = [self getRandomPredicate];
-//        NSString *methodParm2 = [self getRandomStringFromArr:self.wordsFromTxt];
-        
-//        NSString *methodName = [NSString stringWithFormat:@"%@%@%@:(NSString *)%@ %@%@:(NSString *)%@",methodPrefix,brige1,methodParm1,methodParm1,brige2,methodParm2,methodParm2];
         NSString *methodName = [NSString stringWithFormat:@"%@%@",methodPrefix,brige1];
         [set addObject:methodName];
         methodsCount --;
@@ -257,7 +309,7 @@ NSString * getCurrentYearString(){
 }
 
 #pragma mark:生成随机注释字符串
-NSString * getRandromNoteString(){
+NSString * getRandomNoteString(){
     
     NSString *string = @"登录，注册，测试";
     

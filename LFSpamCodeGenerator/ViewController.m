@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <UIKit/UIKit.h>
 #import "SHHUD.h"
 
 @interface ViewController ()
@@ -35,9 +36,8 @@ NSString *beforeClassSuffix = nil;
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(140, 250, 95, 45)];
     [button setTitle:@"生成废代码" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [button setBackgroundColor:[UIColor redColor]];
-    
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setBackgroundImage:[self imageWithColor:[UIColor redColor]] forState:UIControlStateNormal];
     button.layer.borderColor = [UIColor blackColor].CGColor;
     button.layer.borderWidth = .5f;
     [self.view addSubview:button];
@@ -352,7 +352,25 @@ NSString * getRandomNoteString(){
     return _wordsFromList;
 }
 
-//- (void)hello:(NSString *)
+- (UIImage *)imageWithColor:(UIColor *)color {
+    
+    CGRect rect = CGRectMake(0, 0, 1, 1);  //图片尺寸
+    
+    UIGraphicsBeginImageContext(rect.size); //填充画笔
+    
+    CGContextRef context = UIGraphicsGetCurrentContext(); //根据所传颜色绘制
+    
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    
+    CGContextFillRect(context, rect); //联系显示区域
+    
+    UIImage * image = UIGraphicsGetImageFromCurrentImageContext(); // 得到图片信息
+    
+    UIGraphicsEndImageContext(); //消除画笔
+    
+    return image;
+    
+}
 
 @end
 

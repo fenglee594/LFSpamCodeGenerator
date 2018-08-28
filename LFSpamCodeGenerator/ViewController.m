@@ -15,7 +15,7 @@
 
 @end
 
-//int fileCount = 100; //生成的文件个数,在buttonClicked方法中修改
+int fileCount = 1000; //生成的文件个数
 
 NSString *outPath = @"/Users/lifeng/Desktop/spamCode/newCode/";
 
@@ -35,8 +35,9 @@ NSString *beforeClassSuffix = nil;
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(140, 250, 95, 45)];
     [button setTitle:@"生成废代码" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setBackgroundColor:[UIColor redColor]];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [button setBackgroundColor:[UIColor redColor]];
+    
     button.layer.borderColor = [UIColor blackColor].CGColor;
     button.layer.borderWidth = .5f;
     [self.view addSubview:button];
@@ -45,20 +46,15 @@ NSString *beforeClassSuffix = nil;
 
 - (void) buttonClicked
 {
-//    dispatch_sync(dispatch_get_main_queue(), ^{
-//        [SHHUD HUDLoading:nil];
-//    });
-//    [SHHUD performSelectorOnMainThread:@selector(HUDLoading:) withObject:nil waitUntilDone:YES];
-    int fileCount = 1000;    //生成文件(.h + .m)个数
+    [SHHUD HUDLoading:nil];
     while (fileCount > 0) {
-        [SHHUD HUDLoading:nil];
         NSString *classname = [self getRandomClassName:@"LF_"];//类名前缀
         
         [self generatorSpamCodeFileWithClassName:classname];
         fileCount --;
     }
     [self generatorSpamCodeFileWithClassName:publicCallClassName]; //单独生成
-    [SHHUD HUDHide];
+    [SHHUD HUDInfo:@"废代码生成成功"];
 }
 
 
@@ -200,6 +196,7 @@ NSString *beforeClassSuffix = nil;
     NSString *importClass = @"<Foundation/Foundation.h>";
     if (beforeClass) {
         importClass = [NSString stringWithFormat:@"\"%@\"",[beforeClass stringByAppendingString:@".h"]];
+//            [SHHUD HUDSuccess:@"废代码生成成功"];
     }
     
     fileName = [NSString stringWithFormat:@"%@.m",className];

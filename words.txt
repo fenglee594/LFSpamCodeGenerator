@@ -26028,7 +26028,6 @@ bookworks
 bookworm
 bookworms
 booky
-bool
 booled
 booling
 bools
@@ -27669,7 +27668,6 @@ breadwinners
 breadwinning
 breadwinnings
 bready
-break
 breakable
 breakableness
 breakablenesses
@@ -37031,7 +37029,6 @@ chaptrel
 chaptrels
 chaqueta
 chaquetas
-char
 chara
 charabanc
 charabancs
@@ -47965,7 +47962,6 @@ continuatively
 continuatives
 continuator
 continuators
-continue
 continued
 continuedly
 continuedness
@@ -58256,7 +58252,6 @@ defat
 defats
 defatted
 defatting
-default
 defaulted
 defaulter
 defaulters
@@ -67915,7 +67910,6 @@ djinni
 djinns
 djinny
 djins
-do
 doab
 doable
 doabs
@@ -69192,7 +69186,6 @@ douanier
 douaniers
 douar
 douars
-double
 doubled
 doubleheader
 doubleheaders
@@ -74222,7 +74215,6 @@ eloquently
 elpee
 elpees
 els
-else
 elsewhere
 elsewhither
 elsewise
@@ -82787,7 +82779,6 @@ extermine
 extermined
 extermines
 extermining
-extern
 external
 externalisation
 externalisations
@@ -83889,7 +83880,6 @@ fallowness
 fallownesses
 fallows
 falls
-false
 falsed
 falseface
 falsefaces
@@ -88468,7 +88458,6 @@ flix
 flixed
 flixes
 flixing
-float
 floatabilities
 floatability
 floatable
@@ -89853,7 +89842,6 @@ foppishly
 foppishness
 foppishnesses
 fops
-for
 fora
 forage
 foraged
@@ -113625,7 +113613,6 @@ idyllist
 idyllists
 idylls
 idyls
-if
 iff
 iffier
 iffiest
@@ -115592,7 +115579,6 @@ imputes
 imputing
 imshi
 imshy
-in
 inabilities
 inability
 inabstinence
@@ -134644,7 +134630,6 @@ lonesomely
 lonesomeness
 lonesomenesses
 lonesomes
-long
 longa
 longaeval
 longaevous
@@ -154739,7 +154724,6 @@ nikau
 nikaus
 nikethamide
 nikethamides
-nil
 nilgai
 nilgais
 nilgau
@@ -155067,7 +155051,6 @@ nizamates
 nizams
 nkosi
 nkosis
-no
 noah
 noahs
 nob
@@ -198299,7 +198282,6 @@ regionary
 regions
 regisseur
 regisseurs
-register
 registerable
 registered
 registerer
@@ -202328,7 +202310,6 @@ restretched
 restretches
 restretching
 restricken
-restrict
 restricted
 restrictedly
 restrictedness
@@ -203118,7 +203099,6 @@ returf
 returfed
 returfing
 returfs
-return
 returnabilities
 returnability
 returnable
@@ -213906,7 +213886,6 @@ selenoses
 selenosis
 selenous
 seles
-self
 selfdom
 selfdoms
 selfed
@@ -217454,7 +217433,6 @@ shorings
 shorl
 shorls
 shorn
-short
 shortage
 shortages
 shortarm
@@ -228891,7 +228869,6 @@ statespersons
 stateswoman
 stateswomen
 statewide
-static
 statical
 statically
 statice
@@ -235135,7 +235112,6 @@ sup
 supawn
 supawns
 supe
-super
 superabilities
 superability
 superable
@@ -237522,7 +237498,6 @@ swiss
 swisses
 swissing
 swissings
-switch
 switchable
 switchback
 switchbacked
@@ -251067,7 +251042,6 @@ trudgers
 trudges
 trudging
 trudgings
-true
 trueblue
 trueblues
 trueborn
@@ -257495,7 +257469,6 @@ uninvited
 uninviting
 uninvoked
 uninvolved
-union
 unionisation
 unionisations
 unionise
@@ -266184,7 +266157,6 @@ voicers
 voices
 voicing
 voicings
-void
 voidable
 voidableness
 voidablenesses
@@ -266227,7 +266199,6 @@ volar
 volaries
 volary
 volatic
-volatile
 volatileness
 volatilenesses
 volatiles
@@ -269564,7 +269535,6 @@ whigmaleerie
 whigmaleeries
 whigmaleery
 whigs
-while
 whiled
 whilere
 whiles
@@ -273283,7 +273253,6 @@ yersiniae
 yersinias
 yersinioses
 yersiniosis
-yes
 yeses
 yeshiva
 yeshivah

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0966EFD21351ECA0035D509 /* word_list.json in Resources */ = {isa = PBXBuildFile; fileRef = C0966EFB21351ECA0035D509 /* word_list.json */; };
+		C0966EFE21351ECA0035D509 /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = C0966EFC21351ECA0035D509 /* words.txt */; };
 		C0CC6554212AA7B2005F10AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CC6553212AA7B2005F10AA /* AppDelegate.m */; };
 		C0CC6557212AA7B2005F10AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CC6556212AA7B2005F10AA /* ViewController.m */; };
 		C0CC655A212AA7B2005F10AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0CC6558212AA7B2005F10AA /* Main.storyboard */; };
@@ -33,11 +35,11 @@
 		C0CC659A212AAB72005F10AA /* JGProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CC6587212AAB72005F10AA /* JGProgressHUDRingIndicatorView.m */; };
 		C0CC659B212AAB72005F10AA /* JGProgressHUDPieIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CC6588212AAB72005F10AA /* JGProgressHUDPieIndicatorView.m */; };
 		C0CC659E212AAB85005F10AA /* SHHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CC659C212AAB84005F10AA /* SHHUD.m */; };
-		C0CC65A0212ABA61005F10AA /* word_list.json in Resources */ = {isa = PBXBuildFile; fileRef = C0CC659F212ABA61005F10AA /* word_list.json */; };
-		C0E87859212BE8C50053043E /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = C0E87858212BE8C50053043E /* words.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C0966EFB21351ECA0035D509 /* word_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = word_list.json; sourceTree = "<group>"; };
+		C0966EFC21351ECA0035D509 /* words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
 		C0CC654F212AA7B2005F10AA /* LFSpamCodeGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LFSpamCodeGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0CC6552212AA7B2005F10AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C0CC6553212AA7B2005F10AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -82,8 +84,6 @@
 		C0CC6588212AAB72005F10AA /* JGProgressHUDPieIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDPieIndicatorView.m; sourceTree = "<group>"; };
 		C0CC659C212AAB84005F10AA /* SHHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHHUD.m; sourceTree = "<group>"; };
 		C0CC659D212AAB84005F10AA /* SHHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHHUD.h; sourceTree = "<group>"; };
-		C0CC659F212ABA61005F10AA /* word_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = word_list.json; sourceTree = "<group>"; };
-		C0E87858212BE8C50053043E /* words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +100,8 @@
 		C0CC6546212AA7B2005F10AA = {
 			isa = PBXGroup;
 			children = (
-				C0E87858212BE8C50053043E /* words.txt */,
-				C0CC659F212ABA61005F10AA /* word_list.json */,
+				C0966EFB21351ECA0035D509 /* word_list.json */,
+				C0966EFC21351ECA0035D509 /* words.txt */,
 				C0CC6568212AAB72005F10AA /* JGProgressHUD */,
 				C0CC6551212AA7B2005F10AA /* LFSpamCodeGenerator */,
 				C0CC6550212AA7B2005F10AA /* Products */,
@@ -231,7 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0CC6590212AAB72005F10AA /* HUDFailure_45x45_@3x.png in Resources */,
-				C0CC65A0212ABA61005F10AA /* word_list.json in Resources */,
+				C0966EFD21351ECA0035D509 /* word_list.json in Resources */,
 				C0CC655F212AA7B4005F10AA /* LaunchScreen.storyboard in Resources */,
 				C0CC6593212AAB72005F10AA /* HUDSuccess_42x42_@3x.png in Resources */,
 				C0CC658E212AAB72005F10AA /* HUDWarning_42x42_@3x.png in Resources */,
@@ -240,7 +240,7 @@
 				C0CC658A212AAB72005F10AA /* HUDWarning_42x42_@2x.png in Resources */,
 				C0CC655A212AA7B2005F10AA /* Main.storyboard in Resources */,
 				C0CC6595212AAB72005F10AA /* JGProgressHUDResources.bundle in Resources */,
-				C0E87859212BE8C50053043E /* words.txt in Resources */,
+				C0966EFE21351ECA0035D509 /* words.txt in Resources */,
 				C0CC6597212AAB72005F10AA /* HUDSuccess_42x42_@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,19 +13,15 @@
 @property (nonatomic, strong) NSArray *wordsFromList;
 @property (nonatomic, strong) NSArray *wordsFromTxt;
 
-@property (nonatomic, copy) NSString *methodParams1;    //用来保存方法名的参数1
-@property (nonatomic, copy) NSString *methodParams2;    //用来保存方法名的参数2
-
 @end
 
-int fileCount = 2; //生成的文件个数
+//int fileCount = 100; //生成的文件个数,在buttonClicked方法中修改
 
-NSString *outPath = @"/Users/lifeng/Desktop/spam/code/";
+NSString *outPath = @"/Users/lifeng/Desktop/spamCode/newCode/";
 
-NSString *publicHeader = @"PublicHeader";   //需要引入的头文件
-NSString *publicCallClassName = @"HelloWorld";  //外面引用的类的名称
+NSString *publicHeader = @"PublicHeader";   //包含所有头文件的文件,可按需更改名称
+NSString *publicCallClassName = @"HelloWorld";  //外面引用的类的名称,可按需更改
 
-NSString *classMethodPrefix = @"";
 NSString *beforeClass = nil;
 NSString *beforeClassPrefix = nil;
 NSString *beforeClassSuffix = nil;
@@ -45,46 +41,24 @@ NSString *beforeClassSuffix = nil;
     button.layer.borderWidth = .5f;
     [self.view addSubview:button];
     [button addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *pButton = [[UIButton alloc] initWithFrame:CGRectMake(140, 350, 95, 45)];
-    [pButton setTitle:@"生成plist文件" forState:UIControlStateNormal];
-    [pButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [pButton setBackgroundColor:[UIColor greenColor]];
-    pButton.layer.borderColor = [UIColor blackColor].CGColor;
-    pButton.layer.borderWidth = .5f;
-    [self.view addSubview:pButton];
-    [pButton addTarget:self action:@selector(pButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void) buttonClicked
 {
+//    dispatch_sync(dispatch_get_main_queue(), ^{
+//        [SHHUD HUDLoading:nil];
+//    });
+//    [SHHUD performSelectorOnMainThread:@selector(HUDLoading:) withObject:nil waitUntilDone:YES];
+    int fileCount = 1000;    //生成文件(.h + .m)个数
     while (fileCount > 0) {
         [SHHUD HUDLoading:nil];
-        
-        NSString *classname = [self getRandomClassName:@"LF_"];
+        NSString *classname = [self getRandomClassName:@"LF_"];//类名前缀
         
         [self generatorSpamCodeFileWithClassName:classname];
         fileCount --;
     }
-    
-    [self generatorSpamCodeFileWithClassName:publicCallClassName];
+    [self generatorSpamCodeFileWithClassName:publicCallClassName]; //单独生成
     [SHHUD HUDHide];
-}
-
-- (void)pButtonClicked
-{
-    [SHHUD HUDLoading:nil];
-    NSString *wordsPath = [[NSBundle mainBundle] pathForResource:@"words" ofType:@"txt"];
-    NSError *error;
-    NSString *string = [NSString stringWithContentsOfFile:wordsPath encoding:NSUTF8StringEncoding error:&error];
-    if (error != nil) {
-        NSLog(@"%@",error);
-    }
-    [SHHUD HUDHide];
-    NSArray *arr = [string componentsSeparatedByString:@"\n"];
-    NSLog(@"%ld",arr.count);
-    
-    
 }
 
 
@@ -115,7 +89,7 @@ NSString *beforeClassSuffix = nil;
 - (NSString *)getRandomStringFromArr:(NSArray *)words
 {
     NSString *str = words[(int)(arc4random() % words.count)];
-    str = [[str lowercaseString] capitalizedString];
+    str = [[str lowercaseString] capitalizedString];    //首字母大写
     return str;
 }
 
@@ -144,22 +118,15 @@ NSString *beforeClassSuffix = nil;
  */
 - (NSString *) getClassNameSuffix
 {
-    NSArray *suffixStrArray = @[@"View",@"ViewController",@"Controller",@"TableView",@"CollectionView",@"TableViewController",@"CollectionViewController",@"CollectionVIew",@"Progress",@"Delegate",@"Model",@"Controller",@"ViewController",@"Button",@"Label",@"Navigator",@"Contains",@"Configure",@"BaseCell",@"TableViewCell",@"TextFiled",@"Controller",@"ViewController",@"Table",@"PickerView",@"CustomView",@"Print",@"Moon",@"Sun",@"LakersController",@"Lakers",@"Kobe",@"LBJ",@"LeBronJames",@"HomeView",@"AppDalegate",@"Sweetheart",@"Gorgeous",@"ViewController",@"Sophisticated",@"Renaissance",@"ViewController",@"Cosmopolitan",@"Bumblebee",@"Umbrella",@"Controller",@"Flabbergasted",@"Hippopotamus",@"ViewController",@"Smashing",@"Loquacious",@"Smithereens",@"Hodgepodge",@"Shipshape",@"ViewController",@"ViewController",@"Explosion",@"Fuselage",@"Zing",@"Believe",@"Smithereens",@"Final",@"Galaxy",@"Butterfly",@"Rainbow",@"Destiny"];
+    NSArray *suffixStrArray = @[@"View",@"ViewController",@"Controller",@"TableView",@"CollectionView",@"TableViewController",@"CollectionViewController",@"CollectionVIew",@"Progress",@"Delegate",@"Model",@"Controller",@"ViewController",@"Button",@"Label",@"Navigator",@"Contains",@"Configure",@"ViewController",@"BaseCell",@"TableViewCell",@"TextFiled",@"Controller",@"ViewController",@"ViewController",@"Table",@"PickerView",@"CustomView",@"Print",@"Moon",@"Sun",@"ViewController",@"LakersController",@"Lakers",@"Kobe",@"LBJ",@"LeBronJames",@"HomeView",@"AppDalegate",@"Sweetheart",@"Gorgeous",@"ViewController",@"Sophisticated",@"Renaissance",@"ViewController",@"Cosmopolitan",@"Bumblebee",@"Umbrella",@"Controller",@"Flabbergasted",@"Hippopotamus",@"ViewController",@"ViewController",@"Smashing",@"Loquacious",@"Smithereens",@"Hodgepodge",@"Shipshape",@"ViewController",@"ViewController",@"Explosion",@"Fuselage",@"Zing",@"Believe",@"Smithereens",@"Final",@"Galaxy",@"Butterfly",@"Rainbow",@"Destiny"];
     return suffixStrArray[(int)(arc4random() % suffixStrArray.count)];
 }
-
-
-//NSString *beforeClass = nil;    //上一个类名
-NSString *beforeClassMethodString = nil;  //保存调用上一个类的方法String
-
 
 /**
  生成有调用关系的垃圾代码
  */
 - (void) generatorSpamCodeFileWithClassName:(NSString *)className
 {
-//    NSString *beforeMethods = nil;
-    
     [self createDirectory:outPath];
     NSString *importString = @"#import <Foundation/Foundation.h> \n";
 
@@ -177,6 +144,7 @@ NSString *beforeClassMethodString = nil;  //保存调用上一个类的方法Str
     
     NSSet *methodsSet = [self getMethodsSet];
     if ([className isEqualToString:publicCallClassName]) {
+        //自定义公开方法的前半段
         methodsSet = [NSSet setWithObjects:@"mainMethodsCalledWith", nil];
     }
     
@@ -191,25 +159,24 @@ NSString *beforeClassMethodString = nil;  //保存调用上一个类的方法Str
         NSString *param2 = [self getRandomStringFromArr:self.wordsFromList];
         NSString *noteStr = getRandomNoteString();
         NSString *predicate = [self getRandomPredicate];
-        [hFileMethodsString appendFormat:@"// %@ \n %@ (void)%@%@:(NSString *)%@ %@%@:(NSString *)%@;\n\n",noteStr, @"+", methodName, param1, param1, predicate, param2, param2];
-
+        [hFileMethodsString appendFormat:@"// %@ \n %@ (void)%@%@:(NSString *)%@ %@%@:(NSString *)%@;\n\n",noteStr, @"+", methodName, param1, param1.lowercaseString, predicate, param2, param2.lowercaseString];
+        
         //给.m文件中添加注释并拼接方法
-        [mFileMethodsString appendFormat:@"#pragma mark - %@ \n %@ (void)%@%@:(NSString *)%@ %@%@:(NSString *)%@\n {\n", noteStr, @"+", methodName, param1, param1, predicate, param2, param2];
-
+        [mFileMethodsString appendFormat:@"#pragma mark - %@ \n %@ (void)%@%@:(NSString *)%@ %@%@:(NSString *)%@\n {\n", noteStr, @"+", methodName, param1, param1.lowercaseString, predicate, param2, param2.lowercaseString];
+        
         //方法内的代码
         [mFileMethodsString appendFormat:@"    NSLog(@\"function:%%s line:\", %@);\n\n", @"__FUNCTION__"];
-        [mFileMethodsString appendFormat:@"    [%@ substringFromIndex:1];\n\n", param2];
-        [mFileMethodsString appendFormat:@"    [%@ isEqualToString:@\"%@\"];\n\n", param2,param1];
-        [mFileMethodsString appendFormat:@"    NSLog(@\"%%@===%%@\", %@,%@);\n\n", param2,[NSString stringWithFormat:@"@\"%@\"",param1]];
+        [mFileMethodsString appendFormat:@"    [%@ substringFromIndex:1];\n\n", param2.lowercaseString];
+        [mFileMethodsString appendFormat:@"    [%@ isEqualToString:@\"%@\"];\n\n", param2.lowercaseString,param1.lowercaseString];
+        [mFileMethodsString appendFormat:@"    NSLog(@\"%%@===%%@\", %@,%@);\n\n", param2.lowercaseString,[NSString stringWithFormat:@"@\"%@\"",param1.lowercaseString]];
         
         if (beforeClass && index == 0) {
-            [mFileMethodsString appendFormat:@"     //调用%@  \n   [%@ %@:%@ %@:%@];", beforeClass, beforeClass, beforeClassPrefix, param1, beforeClassSuffix, param2];
-            beforeClass = nil;
+            [mFileMethodsString appendFormat:@"     //调用%@  \n   [%@ %@:%@ %@:%@];", beforeClass, beforeClass, beforeClassPrefix, param1.lowercaseString, beforeClassSuffix, param2.lowercaseString];
             beforeClassSuffix = nil;
             beforeClassPrefix = nil;
         }
         if (beforeMethodPrefix) {
-            [mFileMethodsString appendFormat:@"     //调用%@  \n   [self %@:%@ %@:%@];", beforeMethodPrefix, beforeMethodPrefix, param1, beforeMethodSuffix, param2];
+            [mFileMethodsString appendFormat:@"     //调用%@  \n   [self %@:%@ %@:%@];", beforeMethodPrefix, beforeMethodPrefix, param1.lowercaseString, beforeMethodSuffix, param2.lowercaseString];
         }
         
         [mFileMethodsString appendString:@"\n}\n\n"];
@@ -217,25 +184,28 @@ NSString *beforeClassMethodString = nil;  //保存调用上一个类的方法Str
         beforeMethodSuffix = [NSString stringWithFormat:@"%@%@",predicate,param2];
         
         if (index == methodsSet.count - 1) {
-            beforeClass = className;
             beforeClassPrefix = beforeMethodPrefix;
             beforeClassSuffix = beforeMethodSuffix;
         }
         index ++;
-
+        
     }
     
     
-   
+    
     
     NSString *fileName = [NSString stringWithFormat:@"%@.h",className];
     NSString *fileContent = [NSString stringWithFormat:kHClassFileTemplate,fileName,getCurrentDateString(),getCurrentYearString(),importString,className,hFileMethodsString];
     [fileContent writeToFile:[outPath stringByAppendingString:fileName] atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    NSString *importClass = [NSString stringWithFormat:@"#import \"%@\"\n",fileName];
+    NSString *importClass = @"<Foundation/Foundation.h>";
+    if (beforeClass) {
+        importClass = [NSString stringWithFormat:@"\"%@\"",[beforeClass stringByAppendingString:@".h"]];
+    }
+    
     fileName = [NSString stringWithFormat:@"%@.m",className];
     fileContent = [NSString stringWithFormat:kMClassFileTemplate,fileName,getCurrentDateString(),getCurrentYearString(),className,importClass,className,mFileMethodsString];
     [fileContent writeToFile:[outPath stringByAppendingString:fileName] atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    
+    beforeClass = className;
 }
 
 ///MARK: 获取方法集合
@@ -258,8 +228,6 @@ NSString *beforeClassMethodString = nil;  //保存调用上一个类的方法Str
     NSArray *arr = @[@"At",@"With",@"From",@"Between",@"Blong",@"To",@"In",@"On",@"For",@"Of",@"Over",@"By",@"Into",@"As",@"About",@"And"];
     return arr[(int)(arc4random() % arr.count)];
 }
-
-
 
 
 - (void)didReceiveMemoryWarning {
@@ -387,4 +355,7 @@ NSString * getRandomNoteString(){
     return _wordsFromList;
 }
 
+//- (void)hello:(NSString *)
+
 @end
+
